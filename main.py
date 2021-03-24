@@ -6,9 +6,9 @@ pygame.font.init()
 HEALTH_FONT = pygame.font.SysFont('comicsans', 40)
 WINNER_FONT = pygame.font.SysFont('comicsans', 100)
 # Iniciando Fontes de Sons
-"""pygame.mixer.init()
-BULLET_HIT_SOUND = pygame.mixer.music.load('Assets/acerto.mp3')
-BULLET_FIRE_SOUND = pygame.mixer.music.load('Assets/tiro.mp3')"""
+pygame.mixer.init()
+BULLET_HIT_SOUND = pygame.mixer.Sound('Assets/acerto.wav')
+BULLET_FIRE_SOUND = pygame.mixer.Sound('Assets/gun.wav')
 # Definindo Padrao de cores
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -135,20 +135,20 @@ def main():
                 if event.key == pygame.K_LCTRL and len(yellow_bullets) < MAX_BULLETS:
                     bullet = pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height//2 - 2, 10, 4)
                     yellow_bullets.append(bullet)
-                    #BULLET_FIRE_SOUND.play()
+                    BULLET_FIRE_SOUND.play(0)
 
                 if event.key == pygame.K_RCTRL and len(red_bullets) < MAX_BULLETS:
                     bullet = pygame.Rect(red.x, red.y + red.height//2 - 2, 10, 4)
                     red_bullets.append(bullet)
-                    #BULLET_FIRE_SOUND.play()
+                    BULLET_FIRE_SOUND.play(0)
 
             if event.type == RED_HIT:
                 red_health -= 1
-                #BULLET_HIT_SOUND.play()
+                BULLET_HIT_SOUND.play(0)
 
             if event.type == YELLOW_HIT:
                 yellow_health -= 1
-                #BULLET_HIT_SOUND.play()
+                BULLET_HIT_SOUND.play(0)
 
         winner_text = ""
         if red_health <= 0:
